@@ -10,9 +10,10 @@
 	</parent>
 	<groupId>com.app</groupId>
 	<artifactId>User-Api-Jwt</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>User-Api-Jwt</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Proyecto de muestra sobre cómo implementar la seguridad con
+		JWT basada en Spring boot 3 y Spring security 6</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
