@@ -62,7 +62,7 @@ public class SecurityConfig {
         //es creado dentro de esta clase
         jwtAuthenticationFilter.setAuthenticationManager(authenticationManager);
         //Se configura el endpoint para autenticarse
-        jwtAuthenticationFilter.setFilterProcessesUrl("/login");
+        jwtAuthenticationFilter.setFilterProcessesUrl("/auth/login");
 
         return http
                 // Se deshabilita Cross-site request forgery
