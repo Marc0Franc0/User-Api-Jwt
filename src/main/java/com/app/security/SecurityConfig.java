@@ -1,24 +1,19 @@
-package com.app.config;
+package com.app.security;
 
-import com.app.jwt.JwtAuthenticationFilter;
-import com.app.jwt.JwtAuthorizationFilter;
-import com.app.jwt.JwtTokenProvider;
+import com.app.security.jwt.JwtAuthenticationFilter;
+import com.app.security.jwt.JwtAuthorizationFilter;
+import com.app.security.jwt.JwtTokenProvider;
 import com.app.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.authentication.configuration.EnableGlobalAuthentication;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 @Configuration
@@ -74,7 +69,14 @@ public class SecurityConfig {
                 .authorizeHttpRequests(
                         //Configuración de acceso a los endpoints
                         auth-> {
-                            auth.anyRequest().permitAll();
+                            //endpoint para registrarse permitido para todos
+                            auth.requestMatchers("/auth/register").permitAll();
+                            //endpoint público con acceso para usuarios y administradores
+                            auth.requestMatchers("/public/**").hasAnyRole("USER","ADMIN");
+                            //endpoint privado con acceso solo para administradores
+                            auth.requestMatchers("/private/**").hasRole("ADMIN");
+                            //para demas endpint solo se debe estar autenticado
+                            auth.anyRequest().authenticated();
                         }
                 )
                 //Filtro creado el cual es necesario para autenticar un usuario con su username y password

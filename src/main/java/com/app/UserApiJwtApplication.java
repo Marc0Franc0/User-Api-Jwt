@@ -24,7 +24,7 @@ public class UserApiJwtApplication {
 		SpringApplication.run(UserApiJwtApplication.class, args);
 	}
 
-	@Bean
+/*	@Bean
 	CommandLineRunner init() {
 		return args -> {
 
@@ -38,5 +38,5 @@ public class UserApiJwtApplication {
 
 			userRepository.save(userEntity);
 		};
-	}
+	}*/
 }

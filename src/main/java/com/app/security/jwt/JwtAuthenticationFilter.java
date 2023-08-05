@@ -1,4 +1,4 @@
-package com.app.jwt;
+package com.app.security.jwt;
 
 import com.app.model.UserEntity;
 import com.fasterxml.jackson.core.exc.StreamReadException;

@@ -1,4 +1,4 @@
-package com.app.jwt;
+package com.app.security.jwt;
 
 import java.io.IOException;
 
