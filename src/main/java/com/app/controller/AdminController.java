@@ -1,14 +1,26 @@
 package com.app.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.app.dto.RegisterDTO;
+import com.app.service.UserEntityService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Set;
 
 @RestController
 @RequestMapping("private")
 public class AdminController {
-    @GetMapping("/")
-    public String hola(){
-        return "Hola admin";
+    @Autowired
+    UserEntityService userEntityService;
+
+    //Endpoint para poder registrarse y tener acceso como admin
+    @PostMapping("/auth/register")
+    public ResponseEntity<?> register(@RequestBody RegisterDTO registerDTO) {
+        RegisterDTO user = registerDTO;
+        user.getRoles().clear();
+        user.setRoles(Set.of("ADMIN","USER"));
+        return ResponseEntity.status(HttpStatus.OK).body(userEntityService.registerUser(registerDTO));
     }
 }

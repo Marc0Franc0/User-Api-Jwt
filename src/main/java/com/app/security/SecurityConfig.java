@@ -57,7 +57,7 @@ public class SecurityConfig {
         //es creado dentro de esta clase
         jwtAuthenticationFilter.setAuthenticationManager(authenticationManager);
         //Se configura el endpoint para autenticarse
-        jwtAuthenticationFilter.setFilterProcessesUrl("/auth/login");
+        jwtAuthenticationFilter.setFilterProcessesUrl("/public/auth/login");
 
         return http
                 // Se deshabilita Cross-site request forgery
@@ -69,13 +69,13 @@ public class SecurityConfig {
                 .authorizeHttpRequests(
                         //Configuración de acceso a los endpoints
                         auth-> {
-                            //endpoint para registrarse permitido para todos
-                            auth.requestMatchers("/auth/register").permitAll();
+                            //endpoint para poder registrarse por primera vez
+                            auth.requestMatchers("/public/auth/register").permitAll();
                             //endpoint público con acceso para usuarios y administradores
                             auth.requestMatchers("/public/**").hasAnyRole("USER","ADMIN");
                             //endpoint privado con acceso solo para administradores
                             auth.requestMatchers("/private/**").hasRole("ADMIN");
-                            //para demas endpint solo se debe estar autenticado
+                            //para demas endpoint solo se debe estar autenticado
                             auth.anyRequest().authenticated();
                         }
                 )

@@ -5,6 +5,7 @@ import com.app.model.RoleEntity;
 import com.app.model.UserEntity;
 import com.app.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -20,17 +21,22 @@ public class UserApiJwtApplication {
 	@Autowired
 	UserRepository userRepository;
 
+	@Value("${user.admin.username}")
+	String usernameAdmin;
+	@Value("${user.admin.password}")
+	String passwordAdmin;
+
 	public static void main(String[] args) {
 		SpringApplication.run(UserApiJwtApplication.class, args);
 	}
 
-/*	@Bean
+@Bean
 	CommandLineRunner init() {
 		return args -> {
 
 			UserEntity userEntity = UserEntity.builder()
-					.username("marco")
-					.password(passwordEncoder.encode("1234"))
+					.username(usernameAdmin)
+					.password(passwordEncoder.encode(passwordAdmin))
 					.roles(Set.of(RoleEntity.builder()
 							.name(ERole.valueOf(ERole.ADMIN.name()))
 							.build()))
@@ -38,5 +44,5 @@ public class UserApiJwtApplication {
 
 			userRepository.save(userEntity);
 		};
-	}*/
+	}
 }
