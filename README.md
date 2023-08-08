@@ -33,6 +33,10 @@ Configurar JWT: [application.properties](https://github.com/Marc0Franc0/School-M
   (Se utiliza para firmar los tokens)
 - jwt.time.expiration = 86400000 (equivalente a un día)
 
+Configurar usuario admin:
+- user.admin.username = nombre_de_usuario_admin
+- user.admin.password = contraseña_de_usuario_admin
+
 Ejecutar localmente
 
 ```shell

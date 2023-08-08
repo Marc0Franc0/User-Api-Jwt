@@ -1,10 +1,12 @@
 package com.app.service;
 
+import com.app.dto.PersonalData;
 import com.app.dto.RegisterDTO;
 import com.app.model.ERole;
 import com.app.model.RoleEntity;
 import com.app.model.UserEntity;
 import com.app.repository.UserRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -36,6 +38,12 @@ public class UserEntityServiceImpl implements UserEntityService{
                 .password(passwordEncoder.encode(registerDTO.getPassword()))
                 //roles del usuario
                 .roles(roles)
+                .personalData( new PersonalData(
+                registerDTO.getFirstName(),
+                        registerDTO.getLastName(),
+                        registerDTO.getAge(),
+                        registerDTO.getEmail()
+                ))
                 .build();
 
       return userRepository.save(userEntity);

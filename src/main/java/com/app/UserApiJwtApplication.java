@@ -1,6 +1,7 @@
 package com.app;
 
 import com.app.model.ERole;
+import com.app.dto.PersonalData;
 import com.app.model.RoleEntity;
 import com.app.model.UserEntity;
 import com.app.repository.UserRepository;
@@ -40,6 +41,8 @@ public class UserApiJwtApplication {
 					.roles(Set.of(RoleEntity.builder()
 							.name(ERole.valueOf(ERole.ADMIN.name()))
 							.build()))
+					.personalData(new PersonalData
+							("","",0,""))
 					.build();
 
 			userRepository.save(userEntity);
