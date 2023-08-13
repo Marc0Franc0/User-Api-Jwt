@@ -2,6 +2,7 @@ package com.app.controller;
 
 import com.app.dto.RegisterDTO;
 import com.app.service.UserEntityService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,6 +13,7 @@ import java.util.Set;
 
 @RestController
 @RequestMapping("private")
+@SecurityRequirement(name="Bearer Authentication")
 public class AdminController {
     @Autowired
     UserEntityService userEntityService;

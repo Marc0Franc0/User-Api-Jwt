@@ -17,7 +17,7 @@ public class SQLException {
     @ExceptionHandler(SQLIntegrityConstraintViolationException.class)
     public ResponseEntity captureSQLIntegrityConstraintViolationException
     (SQLIntegrityConstraintViolationException e){
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Message: ".concat(e.getMessage()));
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Message: ".concat("Pruebe con otro username"));
     }
 
 }

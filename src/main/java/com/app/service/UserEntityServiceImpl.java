@@ -1,11 +1,14 @@
 package com.app.service;
 
+import com.app.dto.LoginDTO;
 import com.app.dto.PersonalData;
 import com.app.dto.RegisterDTO;
 import com.app.model.ERole;
 import com.app.model.RoleEntity;
 import com.app.model.UserEntity;
 import com.app.repository.UserRepository;
+import com.app.security.jwt.JwtAuthenticationFilter;
+import com.app.security.jwt.JwtTokenProvider;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
@@ -20,6 +23,8 @@ public class UserEntityServiceImpl implements UserEntityService{
     UserRepository userRepository;
     @Autowired
     PasswordEncoder passwordEncoder;
+    @Autowired
+    JwtTokenProvider jwtTokenProvider;
     //Método para registrar un usuario nuevo
     public UserEntity registerUser(RegisterDTO registerDTO){
         Set<RoleEntity> roles =
@@ -60,5 +65,13 @@ public class UserEntityServiceImpl implements UserEntityService{
                 true,
                 userEntity.getAuthorities()
         );
+    }
+
+    @Override
+    public void authenticate(LoginDTO loginDTO) {
+        JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(jwtTokenProvider);
+        //Se envia al filtro creado el usernmae y password del usuario que desea autenticarse
+        jwtAuthenticationFilter.setUsernameParameter(loginDTO.getUsername());
+        jwtAuthenticationFilter.setPasswordParameter(loginDTO.getPassword());
     }
 }

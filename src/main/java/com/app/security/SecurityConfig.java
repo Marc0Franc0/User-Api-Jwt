@@ -69,8 +69,12 @@ public class SecurityConfig {
                 .authorizeHttpRequests(
                         //Configuración de acceso a los endpoints
                         auth-> {
-                            //endpoint para poder registrarse por primera vez
+                            //Endpoint de documentación
+                            auth.requestMatchers
+                                    ("/swagger-ui.html","/v3/api-docs/**","/swagger-ui/**").permitAll();
+                            //endpoint para poder registrarse por primera vez y autenticarse
                             auth.requestMatchers("/public/auth/register").permitAll();
+                            auth.requestMatchers("/public/auth/login").permitAll();
                             //endpoint público con acceso para usuarios y administradores
                             auth.requestMatchers("/public/**").hasAnyRole("USER","ADMIN");
                             //endpoint privado con acceso solo para administradores

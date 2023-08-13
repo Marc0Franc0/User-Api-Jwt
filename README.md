@@ -46,4 +46,6 @@ mvn clean install
 mvn spring-boot:run
 ```
 
-Dirigirse a: [http://localhost:8080/](http://localhost:8080/)
+Dirigirse a: 
+- [http://localhost:8080/](http://localhost:8080/)
+- [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
