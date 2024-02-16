@@ -7,7 +7,7 @@ Proyecto de muestra sobre cómo implementar la seguridad con autenticación JWT 
 - Autorización basada en roles con Spring Security
 
 ## Tecnologías
-- Spring Boot 3.0
+- Spring Boot 3.1.4
 - Spring Security
 - JSON Web Tokens (JWT)
 - BCrypt
@@ -26,16 +26,11 @@ Para construir y ejecutar la aplicación necesita:
 - [JDK 17+](https://www.oracle.com/java/technologies/downloads/#java17)
 - [Maven 3+](https://maven.apache.org)
 
-Configurar datos de la base de datos MySQL: [application.properties](https://github.com/Marc0Franc0/School-Management/blob/main/src/main/resources/application.properties)
+Configurar perfil (producción o desarrollo):[application.properties](https://github.com/Marc0Franc0/User-Api-Jwt/blob/main/src/main/resources/application.properties)
 
-Configurar JWT: [application.properties](https://github.com/Marc0Franc0/School-Management/blob/main/src/main/resources/application.properties)
-- jwt.secret.key = esYG4cI3/jsQ1f3b+25mesq9nXsN7kIU45hPr27FyRxMd7WteShs/5VnXv1YfgMR
-  (Se utiliza para firmar los tokens)
-- jwt.time.expiration = 86400000 (equivalente a un día)
+Configurar variables de entorno para producción: [application-prod.properties](https://github.com/Marc0Franc0/User-Api-Jwt/blob/main/src/main/resources/application-prod.properties)
 
-Configurar usuario admin:
-- user.admin.username = nombre_de_usuario_admin
-- user.admin.password = contraseña_de_usuario_admin
+Configurar variables de entorno para desarrollo: [application-dev.properties](https://github.com/Marc0Franc0/User-Api-Jwt/blob/main/src/main/resources/application-dev.properties)
 
 Ejecutar localmente
 
@@ -46,6 +41,5 @@ mvn clean install
 mvn spring-boot:run
 ```
 
-Dirigirse a: 
-- [http://localhost:8080/](http://localhost:8080/)
-- [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
+Dirigirse a:
+- [Documentación Swagger](http://localhost:8080/swagger-ui/index.html)
